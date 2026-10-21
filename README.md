@@ -1,10 +1,10 @@
 # ai-aligned-pkill
 
+[![0% Vibe_Coded](https://img.shields.io/badge/0%25-Vibe_Coded-ff69b4?style=for-the-badge&logo=githubcopilot&logoColor=white)](https://github.com/ai-ecoverse/vibe-coded-badge-action)
+
 > **AI is going to pkill us all\***
 >
 > <sub>\* if the simulation happens to run on macOS.</sub>
-
-[![100% Vibe_Coded](https://img.shields.io/badge/100%25-Vibe_Coded-ff69b4?style=for-the-badge&logo=claude&logoColor=white)](https://github.com/ai-ecoverse/vibe-coded-badge-action)
 
 GNU-semantics `pkill` and `pgrep` for coding agents on macOS. It shadows both
 on `PATH`, reads the command line the way the Linux tools the agents were
