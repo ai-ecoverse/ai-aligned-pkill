@@ -1,0 +1,34 @@
+name: Test
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+    # The point is BSD pkill/pgrep, so the tests need a real macOS.
+    runs-on: macos-latest
+    steps:
+    - uses: actions/checkout@v6
+
+    - name: Show toolchain
+      run: |
+        sw_vers
+        /bin/bash --version | head -1
+        test -x /usr/bin/pkill && test -x /usr/bin/pgrep && echo "pkill/pgrep: ok"
+
+    - name: Run installation
+      run: ./install.sh
+
+    - name: Run tests
+      run: ./test.sh
+
+    - name: Verify humans are not intercepted
+      run: |
+        # With no agent markers the shim must behave exactly like BSD pgrep,
+        # which accepts several patterns where GNU semantics would refuse.
+        env -u CLAUDECODE -u CLAUDE_CODE_ENTRYPOINT \
+          AMI_PASSTHROUGH=true "$HOME/.local/bin/pgrep" no-such-a no-such-b \
+          || test $? -eq 1
